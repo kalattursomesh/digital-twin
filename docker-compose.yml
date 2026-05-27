@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  database:
+    image: mongo:latest
+    container_name: twin-db
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+  ml-service:
+    build: ./ml-service
+    container_name: twin-ml
+    ports:
+      - "8000:8000"
+    environment:
+      - PORT=8000
+      - HOST=0.0.0.0
+      - LOG_LEVEL=info
+
+  backend:
+    build: ./backend
+    container_name: twin-backend
+    ports:
+      - "5000:5000"
+    depends_on:
+      - database
+      - ml-service
+    environment:
+      - PORT=5000
+      - MONGODB_URI=mongodb://database:27017/digital-twin
+      - ML_SERVICE_URL=http://ml-service:8000
+      - JWT_SECRET=404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970
+      - JWT_EXPIRATION_MS=604800000
+
+  frontend:
+    build: ./frontend
+    container_name: twin-frontend
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
+    environment:
+      - VITE_API_URL=http://localhost:5000
+      - VITE_WS_URL=ws://localhost:5000/ws
+
+volumes:
+  mongo-data:

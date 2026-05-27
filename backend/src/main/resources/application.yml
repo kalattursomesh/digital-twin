@@ -1,0 +1,23 @@
+server:
+  port: ${PORT:5000}
+
+spring:
+  application:
+    name: digital-twin-backend
+  data:
+    mongodb:
+      uri: ${MONGODB_URI:mongodb://localhost:27017/digital-twin}
+      auto-index-creation: true
+
+app:
+  jwt:
+    secret: ${JWT_SECRET:404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970}
+    expiration-ms: ${JWT_EXPIRATION_MS:604800000} # 7 days
+  ml-service:
+    url: ${ML_SERVICE_URL:http://localhost:8000}
+
+logging:
+  level:
+    root: INFO
+    com.digitaltwin: DEBUG
+    org.springframework.data.mongodb.core.MongoTemplate: DEBUG

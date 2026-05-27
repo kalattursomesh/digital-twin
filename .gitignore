@@ -1,0 +1,38 @@
+# Environment files
+.env
+*.env
+
+# Node / Frontend
+node_modules/
+dist/
+.eslintcache
+
+# Java / Spring Boot Backend
+target/
+*.class
+*.jar
+*.war
+.mvn/
+.metadata/
+.project
+.classpath
+.settings/
+.factorypath
+
+# Python / ML Service
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.ipynb_checkpoints/
+models/*.pkl
+models/*.joblib
+models/*.h5
+
+# OS / IDE
+.vscode/
+.idea/
+Thumbs.db
+Desktop.ini

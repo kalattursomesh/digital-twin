@@ -1,0 +1,94 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    background-color: #05070c;
+    @apply text-slate-300 overflow-x-hidden;
+  }
+}
+
+@layer components {
+  .glass-panel {
+    background-color: rgba(10, 15, 25, 0.75);
+    border: 1px solid rgba(30, 41, 59, 0.6);
+    @apply backdrop-blur-md rounded-xl shadow-lg shadow-black/10;
+  }
+  
+  .btn-primary {
+    @apply bg-gradient-to-r from-primary-600 to-indigo-600 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-200 shadow-md shadow-primary-500/10 hover:shadow-lg hover:shadow-primary-500/20 active:scale-95;
+  }
+  .btn-primary:hover {
+    @apply from-primary-500 to-indigo-500;
+  }
+  
+  .btn-secondary {
+    background-color: rgba(18, 24, 36, 0.8);
+    border: 1px solid rgba(30, 41, 59, 0.8);
+    @apply text-slate-300 font-medium py-2 px-4 rounded-lg transition-all duration-200 active:scale-95 hover:bg-slate-800/30 hover:text-white;
+  }
+
+  .input-field {
+    background-color: rgba(5, 7, 12, 0.8);
+    border: 1px solid rgba(30, 41, 59, 0.8);
+    @apply rounded-lg px-4 py-2 w-full focus:outline-none focus:ring-1 focus:ring-primary-500 focus:border-primary-500 text-slate-200 transition-all placeholder-slate-500;
+  }
+}
+
+/* Custom Webkit Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgba(30, 41, 59, 0.8);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(71, 85, 105, 0.8);
+}
+
+/* Futuristic Grid Pattern & Animations */
+.bg-mesh-grid {
+  background-image: linear-gradient(to right, rgba(99, 102, 241, 0.04) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(99, 102, 241, 0.04) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+
+@keyframes connection-flow {
+  0% { stroke-dashoffset: 24; }
+  100% { stroke-dashoffset: 0; }
+}
+
+@keyframes brain-node-glow {
+  0%, 100% {
+    r: 4px;
+    filter: drop-shadow(0 0 2px var(--glow-color, #6366f1));
+  }
+  50% {
+    r: 6.5px;
+    filter: drop-shadow(0 0 8px var(--glow-color, #6366f1));
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 4s infinite ease-in-out;
+}
+
+.neural-node {
+  animation: brain-node-glow 3s infinite ease-in-out;
+}
+
+.neural-connection {
+  stroke-dasharray: 8;
+  animation: connection-flow 2s infinite linear;
+}

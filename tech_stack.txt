@@ -1,0 +1,55 @@
+DIGITAL TWIN PROJECT - TECHNOLOGIES & DEPENDENCIES
+
+================================================================================
+1. FRONTEND CLIENT
+================================================================================
+- Language: JavaScript (ES6+) / React JSX
+- Framework: React 18
+- Build Tool: Vite 5
+- CSS/Styling: Tailwind CSS 3
+- Dependencies:
+  * react (v18.2.0) - UI library
+  * react-dom (v18.2.0) - React rendering engine
+  * react-router-dom (v6.22.3) - SPA client-side routing
+  * @stomp/stompjs (v7.3.0) - STOMP over WebSocket client
+  * axios (v1.6.8) - HTTP client for REST API endpoints
+  * recharts (v2.12.5) - Area charts for activity timeline visualization
+  * lucide-react (v0.370.0) - Modern outline icon pack
+  * tailwindcss (v3.4.3) - Utility-first styling engine
+  * postcss (v8.4.38) & autoprefixer (v10.4.19) - CSS processors
+
+================================================================================
+2. BACKEND GATEWAY
+================================================================================
+- Language: Java 17 (OpenJDK)
+- Framework: Spring Boot 3.2.4
+- Build/Dependency Tool: Apache Maven
+- Dependencies:
+  * spring-boot-starter-web - REST Controller endpoints & Jackson JSON binding
+  * spring-boot-starter-data-mongodb - MongoDB connection and ORM repository mapping
+  * spring-boot-starter-security - CORS and API role-based authorization rules
+  * spring-boot-starter-websocket - STOMP protocol configuration and WebSocket broker
+  * spring-boot-starter-validation - Request parameter and body validation constraints
+  * jjwt-api (v0.11.5) - JSON Web Token standard interface
+  * jjwt-impl & jjwt-jackson (v0.11.5) - JWT signing mechanism and JSON parsing integration
+  * lombok - Compile-time getter/setter boilerplate reduction helper
+  * spring-boot-starter-test & spring-security-test - Unit and integration testing suites
+
+================================================================================
+3. ML SERVICE (MICROSERVICE)
+================================================================================
+- Language: Python 3.10+
+- Service Gateway: FastAPI 0.115.0
+- Web/ASGI Server: Uvicorn 0.32.0
+- Dependencies:
+  * fastapi (v0.115.0) - High-performance web framework for ML endpoints
+  * uvicorn[standard] (v0.32.0) - Python ASGI web server execution engine
+  * pydantic (v2.10.0) - Input request data verification models
+  * numpy (v1.26.4) - Matrix operations and numerical array formatting
+  * pandas (v2.2.2) - Behavioral analytics and time-series dataframe manipulation
+  * scikit-learn (v1.5.2) - Persona grouping and habit clustering algorithms (K-Means)
+  * tensorflow (v2.16.2) - Custom sequence prediction model (LSTM architecture)
+  * joblib (v1.4.2) - Serialization and loading of saved models (.pkl)
+  * apscheduler (v3.10.4) - Background task runner for periodic model retraining
+  * httpx (v0.28.0) - Async HTTP library
+  * python-dotenv (v1.0.1) - local .env file reader
