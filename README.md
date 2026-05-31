@@ -14,8 +14,8 @@ The Digital Twin system seamlessly maps human digital habits into a structured m
 ## 🚀 Architecture Stack
 
 - **Frontend:** React 18, Vite, Tailwind CSS, Recharts (Glassmorphism + Dark Mode).
-- **Backend API:** Node.js, Express, Socket.io, JWT Authentication.
-- **Database:** MongoDB (Mongoose Schema with compound indexes).
+- **Backend API:** Java 17, Spring Boot, WebSockets (STOMP), JWT Authentication, Spring Data MongoDB.
+- **Database:** MongoDB (Mongoose Schema mapping/Spring Data repositories).
 - **ML Service:** Python 3.10+, FastAPI, PyTorch/scikit-learn (Mocks implemented for initial deployment scalability).
 
 ## 📂 Folder Structure
@@ -23,7 +23,7 @@ The Digital Twin system seamlessly maps human digital habits into a structured m
 ```text
 /digital-twin
   ├── /frontend      # React Dashboard (Vite + Tailwind)
-  ├── /backend       # Node.js API (Express + MongoDB)
+  ├── /backend       # Spring Boot Gateway API (Java + MongoDB)
   ├── /ml-service    # Python AI Engine (FastAPI)
 ```
 

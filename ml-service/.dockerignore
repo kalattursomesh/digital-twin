@@ -1,0 +1,13 @@
+venv/
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+.ipynb_checkpoints/
+.git/
+.gitignore
+.vscode/
+Dockerfile
+docker-compose.yml

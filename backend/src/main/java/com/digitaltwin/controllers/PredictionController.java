@@ -17,6 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 @RestController
@@ -83,10 +84,11 @@ public class PredictionController {
         }).toList();
 
         try {
+            LocalDateTime now = LocalDateTime.now();
             Map<String, Object> request = new HashMap<>();
             request.put("userId", userId);
-            request.put("currentHour", new Date().getHours());
-            request.put("currentDay", new Date().getDay());
+            request.put("currentHour", now.getHour());
+            request.put("currentDay", now.getDayOfWeek().getValue() % 7); // Sunday = 0, Monday = 1, ...
             request.put("activities", mappedActivities);
 
             ResponseEntity<Map> response = restTemplate.postForEntity(

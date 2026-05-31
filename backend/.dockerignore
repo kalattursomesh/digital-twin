@@ -1,0 +1,17 @@
+target/
+*.class
+.idea/
+.mvn/
+*.jar
+*.war
+*.zip
+*.tar.gz
+apache-maven-*/
+mvnw
+mvnw.cmd
+.DS_Store
+.git/
+.gitignore
+.vscode/
+Dockerfile
+docker-compose.yml

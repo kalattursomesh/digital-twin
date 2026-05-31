@@ -20,6 +20,14 @@ class PredictionRequest(BaseModel):
     currentDay: Optional[int] = None
     activities: List[ActivityFeatures]
 
+class BestHourItem(BaseModel):
+    hour: int
+    score: int
+
+class ForecastItem(BaseModel):
+    hour: str
+    score: float
+
 class PredictionResponse(BaseModel):
     prediction: str
     confidence: float
@@ -29,8 +37,8 @@ class PredictionResponse(BaseModel):
 class ProductivityResponse(BaseModel):
     score: float
     trend: str
-    bestHours: List[Dict[str, int]]
-    forecast: List[Dict[str, float]]
+    bestHours: List[BestHourItem]
+    forecast: List[ForecastItem]
     source: str = "ml-model"
 
 class ClusterResponse(BaseModel):
