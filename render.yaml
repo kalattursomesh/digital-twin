@@ -31,9 +31,9 @@ services:
   # 3. React Frontend (Static Site - public)
   - type: web
     name: twin-frontend
-    env: static
+    runtime: static
     buildCommand: cd frontend && npm install && npm run build
-    staticPublishDir: ./frontend/dist
+    staticPublishPath: ./frontend/dist
     envVars:
       - key: VITE_API_URL
         value: "" # Set this to your backend-service URL (e.g. https://twin-backend-service.onrender.com)
