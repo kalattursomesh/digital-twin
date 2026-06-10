@@ -33,7 +33,7 @@ services:
     name: twin-frontend
     env: static
     buildCommand: cd frontend && npm install && npm run build
-    publishDir: ./frontend/dist
+    staticPublishDir: ./frontend/dist
     envVars:
       - key: VITE_API_URL
         value: "" # Set this to your backend-service URL (e.g. https://twin-backend-service.onrender.com)
