@@ -1,0 +1,41 @@
+services:
+  # 1. Python ML Service (Private Service - accessible only to the backend)
+  - type: pserv
+    name: twin-ml-service
+    env: docker
+    dockerContext: ./ml-service
+    dockerfilePath: ./ml-service/Dockerfile
+    envVars:
+      - key: PORT
+        value: 8000
+
+  # 2. Spring Boot Backend (Web Service - accessible to frontend and public)
+  - type: web
+    name: twin-backend-service
+    env: docker
+    dockerContext: ./backend
+    dockerfilePath: ./backend/Dockerfile
+    plan: free
+    envVars:
+      - key: PORT
+        value: 5000
+      - key: MONGODB_URI
+        value: "" # Set your MongoDB Atlas connection string in the Render Dashboard after deploying
+      - key: ML_SERVICE_URL
+        value: http://twin-ml-service:8000
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_EXPIRATION_MS
+        value: "604800000"
+
+  # 3. React Frontend (Static Site - public)
+  - type: web
+    name: twin-frontend
+    env: static
+    buildCommand: cd frontend && npm install && npm run build
+    publishDir: ./frontend/dist
+    envVars:
+      - key: VITE_API_URL
+        value: "" # Set this to your backend-service URL (e.g. https://twin-backend-service.onrender.com)
+      - key: VITE_WS_URL
+        value: "" # Set this to your backend-service WebSocket URL (e.g. wss://twin-backend-service.onrender.com/ws)
