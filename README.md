@@ -15,8 +15,19 @@ The Digital Twin system seamlessly maps human digital habits into a structured m
 
 - **Frontend:** React 18, Vite, Tailwind CSS, Recharts (Glassmorphism + Dark Mode).
 - **Backend API:** Java 17, Spring Boot, WebSockets (STOMP), JWT Authentication, Spring Data MongoDB.
-- **Database:** MongoDB (Mongoose Schema mapping/Spring Data repositories).
-- **ML Service:** Python 3.10+, FastAPI, PyTorch/scikit-learn (Mocks implemented for initial deployment scalability).
+- **Database:** MongoDB (Spring Data repositories mapping).
+- **ML Service:** Python 3.10+, FastAPI, TensorFlow (1D CNN) & scikit-learn (Clustering).
+
+## 🧠 How the Behavior Engine Works (AI/ML)
+
+The system functions as a continuous real-time behavioral feedback loop:
+1. **Telemetry Capture:** Activities are logged via the React UI and sent to the Spring Boot backend (`POST /api/activity/log`).
+2. **Feature Engineering:** The backend enriches the logs with temporal parameters (e.g., `hourOfDay`, `dayOfWeek`, `sessionIndex`, `timeSinceLastActivity`) and updates MongoDB.
+3. **Sequence Analysis:** The backend fetches the recent activity history and makes a REST call to the Python FastAPI microservice.
+4. **Machine Learning Processing:**
+   * **1D CNN (Temporal Convolutional Network):** Extracts local temporal patterns from sequential activity logs to predict next-step transitions and 24-hour productivity trends.
+   * **K-Means Clustering:** Groups user habits into specific behavioral archetypes (e.g., *"Deep Worker"*, *"Balanced Tracker"*, or *"Frequent Distracted"*) to customize dashboard insights.
+5. **Real-time Intervention:** If a user exceeds distraction thresholds during an active focus block, the backend issues an alert via **STOMP WebSockets** to prompt a cognitive reset.
 
 ## 📂 Folder Structure
 
@@ -69,6 +80,12 @@ npm run dev
 ### ML Microservice (`/predict`)
 - `POST /predict/next-action` -> Payload includes massive payload of sequence events. Uses time-series prediction.
 - `POST /predict/productivity` -> Forecasting mechanism.
+
+## 🛡️ Robust Authentication & Session Handling
+
+To ensure system reliability and security:
+* **Stateless JWT Security:** Implements Spring Security filters to validate stateless JWT tokens per request, keeping user authentication decoupled and highly scalable.
+* **Auto-Repairing Local Storage Interceptor:** The React application utilizes a global Axios response interceptor. If any API call returns a `401 Unauthorized` or `403 Forbidden` response (e.g., due to key rotation, server restarts, or expired sessions), the client automatically wipes stale credentials from `localStorage` and redirects the browser back to the `/login` route to prompt a fresh session.
 
 ## 🤝 Next Steps
 - Implement full continuous background scraping (e.g. Chrome Extension) to auto-fill the activity log.

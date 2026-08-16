@@ -1,5 +1,6 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import axios from 'axios';
 import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
 import Layout from './components/Layout';
@@ -16,6 +17,23 @@ function App() {
       setIsAuthenticated(true);
     }
     setIsLoading(false);
+
+    // Auto log out if request gets 401 Unauthorized or 403 Forbidden
+    const interceptor = axios.interceptors.response.use(
+      (response) => response,
+      (error) => {
+        if (error.response && (error.response.status === 401 || error.response.status === 403)) {
+          localStorage.removeItem('twin_token');
+          localStorage.removeItem('twin_user');
+          setIsAuthenticated(false);
+        }
+        return Promise.reject(error);
+      }
+    );
+
+    return () => {
+      axios.interceptors.response.eject(interceptor);
+    };
   }, []);
 
   if (isLoading) {

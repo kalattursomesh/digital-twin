@@ -5,7 +5,7 @@ import random
 # import numpy as np
 # from sklearn.ensemble import RandomForestClassifier
 # from tensorflow.keras.models import Sequential
-# from tensorflow.keras.layers import LSTM, Dense
+# from tensorflow.keras.layers import Conv1D, MaxPooling1D, Flatten, Dense
 
 logger = logging.getLogger(__name__)
 
@@ -23,7 +23,7 @@ class ModelManager:
     def load_models(self):
         """Preload global models if necessary."""
         logger.info("Loading ML models...")
-        # Simulate loading Random Forest & LSTM
+        # Simulate loading Random Forest & 1D CNN
         # self.models['rf'] = joblib.load('models/rf_model.pkl')
         self.is_loaded = True
         logger.info("Models loaded successfully.")
@@ -55,9 +55,9 @@ class ModelManager:
         }
 
     def predict_productivity(self, user_id: str, activities: List[Any]) -> Dict[str, Any]:
-        """Predict user's productivity scores (Mocked LSTM time-series forecast)."""
+        """Predict user's productivity scores (Mocked 1D CNN time-series forecast)."""
         # We would convert activities to time-series sequences of productivity scores
-        # and feed into LSTM for forecasting.
+        # and feed into 1D CNN layers for temporal feature extraction and forecasting.
         
         # Placeholder logic
         productive_types = ['study', 'work', 'coding', 'reading', 'exercise']

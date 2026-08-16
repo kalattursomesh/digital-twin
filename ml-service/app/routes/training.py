@@ -20,7 +20,7 @@ async def trigger_training(req: TrainRequest, background_tasks: BackgroundTasks)
     """Trigger a retraining of the user's personalized models."""
     try:
         # In a real app we'd fetch the user's full activity log from the DB
-        # and retrain the LSTM/RandomForest models on that data.
+        # and retrain the 1D CNN/RandomForest models on that data.
         background_tasks.add_task(mock_training_task, req.userId)
         return {"status": "accepted", "message": "Training job started in background"}
     except Exception as e:

@@ -8,7 +8,7 @@ start "Digital Twin: ML Service" cmd /k "cd ml-service && .\venv\Scripts\activat
 
 :: 2. Start Spring Boot Backend (Port 5000)
 echo Starting Java Spring Boot Backend...
-start "Digital Twin: Spring Backend" cmd /k "cd backend && .\apache-maven-3.9.6\bin\mvn spring-boot:run"
+start "Digital Twin: Spring Backend" cmd /k "set \"JAVA_HOME=C:\Program Files\Microsoft\jdk-17.0.18.8-hotspot\" && cd backend && .\apache-maven-3.9.6\bin\mvn spring-boot:run"
 
 :: 3. Start Frontend Dev Client (Port 5173)
 echo Starting React Frontend...

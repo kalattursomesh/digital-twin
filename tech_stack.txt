@@ -48,7 +48,7 @@ DIGITAL TWIN PROJECT - TECHNOLOGIES & DEPENDENCIES
   * numpy (v1.26.4) - Matrix operations and numerical array formatting
   * pandas (v2.2.2) - Behavioral analytics and time-series dataframe manipulation
   * scikit-learn (v1.5.2) - Persona grouping and habit clustering algorithms (K-Means)
-  * tensorflow (v2.16.2) - Custom sequence prediction model (LSTM architecture)
+  * tensorflow (v2.16.2) - Custom sequence prediction model (1D CNN architecture for sequential time-series prediction)
   * joblib (v1.4.2) - Serialization and loading of saved models (.pkl)
   * apscheduler (v3.10.4) - Background task runner for periodic model retraining
   * httpx (v0.28.0) - Async HTTP library
